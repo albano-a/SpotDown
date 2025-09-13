@@ -9,6 +9,7 @@ import json
 import time
 import sys
 import zipfile
+import shutil
 from datetime import timedelta
 from mutagen.easyid3 import EasyID3
 from mutagen.mp4 import MP4, MP4Tags
@@ -99,11 +100,16 @@ class Spotify2MP3GUI:
         self.setup_ui()
         if sys.platform == 'darwin':
             icon_path = resource_path('icon.icns')  # macOS icon
+        elif sys.platform.startswith('linux'):
+            icon_path = resource_path('icon.png')   # Linux icon
         else:
             icon_path = resource_path('icon.ico')   # Windows icon
         try:
             if sys.platform == 'darwin':
                 # macOS specific icon handling
+                img = tk.PhotoImage(file=icon_path)
+                self.root.iconphoto(True, img)
+            elif sys.platform.startswith('linux'):
                 img = tk.PhotoImage(file=icon_path)
                 self.root.iconphoto(True, img)
             else:
@@ -409,6 +415,8 @@ class Spotify2MP3GUI:
         if platform.system() == "Darwin":  # macOS
             ffmpeg_path = resource_path("ffmpeg")
             ffmpeg_exe = os.path.join(ffmpeg_path, "ffmpeg")
+        elif platform.system() == "Linux":
+            ffmpeg_exe = "ffmpeg"
         else:
             ffmpeg_path = resource_path("ffmpeg")
             ffmpeg_exe = os.path.join(ffmpeg_path, "ffmpeg.exe" if platform.system() == "Windows" else "ffmpeg")
@@ -673,6 +681,9 @@ class Spotify2MP3GUI:
             if platform.system() == "Darwin":
                 ffmpeg_exe = os.path.join(resource_path("ffmpeg"), "ffmpeg")
                 yt_dlp_exe = os.path.join(resource_path("yt-dlp"), "yt-dlp")
+            elif platform.system() == "Linux":
+                ffmpeg_exe = shutil.which("ffmpeg") or "ffmpeg"
+                yt_dlp_exe = shutil.which("yt-dlp") or "yt-dlp"
             else:
                 ffmpeg_exe = os.path.join(base_dir, "ffmpeg", "ffmpeg.exe")
                 yt_dlp_exe = os.path.join(base_dir, "yt-dlp", "yt-dlp.exe")
