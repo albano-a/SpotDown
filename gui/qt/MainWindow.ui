@@ -37,20 +37,9 @@
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="1">
-            <widget class="QPushButton" name="ExportifyButton">
-             <property name="text">
-              <string>Exportify</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="2">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Drag and Drop a CSV file. The playlist name will be the same as the CSV filename.</string>
-             </property>
-            </widget>
-           </item>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
            <item row="3" column="0" colspan="2">
             <widget class="QLineEdit" name="FilenameInput">
              <property name="dragEnabled">
@@ -58,10 +47,17 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_3">
+           <item row="3" column="2">
+            <widget class="QToolButton" name="LoadFilePath">
              <property name="text">
-              <string>Download Spotify CSV via Exportify</string>
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Drag and Drop a CSV file. The playlist name will be the same as the CSV filename.</string>
              </property>
             </widget>
            </item>
@@ -72,7 +68,21 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Download Spotify CSV via Exportify</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QPushButton" name="ExportifyButton">
+             <property name="text">
+              <string>Exportify</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
             <widget class="QPushButton" name="TuneMyMusicButton">
              <property name="text">
               <string>TuneMyMusic</string>
